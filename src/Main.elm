@@ -202,6 +202,7 @@ view model =
   in
   { title = "TimePropose - Share availablity across time zones, with auto timezone converter - timepropose.com",
     body = [
+        Html.header [][],
     --    text "The current URL is: "
     --   , Html.b [] [ text (  model.url.path) ]
     --   , Html.ul []
@@ -296,7 +297,7 @@ footer =
             div [align "center", Html.Attributes.style "padding-top" "20px"][
                 Html.p [] [ text "© 2023 TimePropose. All rights reserved." ],
                 Html.p [] [ text "A project with ❤️ by" ],
-                Html.a [ Html.Attributes.href "https://www.karuturirs.com/"] [ text " karutuirs" ]
+                Html.a [ Html.Attributes.href "https://www.karuturirs.com/"] [ text " karuturirs" ]
                 ]
          
         ]
@@ -327,7 +328,7 @@ buildInitMs url zone =
                     |> filtermsKey
                     |> convertQueryToMS zone 
         else
-            [ ("msa", 0 , (Slot  2013 2 5 13 15))]
+            [ ("msa", 0 , (Slot  2023 2 5 13 15))]
 
 autoTextAdjust : Model -> String
 autoTextAdjust model =
@@ -337,7 +338,7 @@ autoTextAdjust model =
         if query /= "" then
            "Following are shared Availability YYYY - MM - DD  HH:MM"
         else
-           "Propose Your Local Availabilty YYYY - MM - DD  HH:MM"
+           "Propose Your Availability YYYY - MM - DD  HH:MM"
     
 
 buildAdjustMs : Model -> Zone -> List (String, Int, Slot)
@@ -350,7 +351,7 @@ buildAdjustMs model zone =
                     |> filtermsKey
                     |> convertQueryToMS zone 
         else
-            [ ("msa", 0 , (Slot  2013 1 5 13 15))]
+            [ ("msa", 0 , (Slot  2023 1 5 13 15))]
 
 
 removeSlotReorder : Model -> String-> List (String, Int, Slot)
@@ -420,15 +421,15 @@ displaySlots model =
 timeSlotElement : Slot -> String -> Html Msg
 timeSlotElement slot qkey =
     div [Html.Attributes.id qkey, Html.Attributes.style "padding-bottom" "20px", Html.Attributes.style "font-family" "Gill Sans"][
-        input [ type_ "text", size 4,  placeholder "YYYY", value (String.fromInt slot.year) , onInput (YearUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
+        input [ type_ "text", size 8,  placeholder "YYYY", value (String.fromInt slot.year) , onInput (YearUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
         , Html.text "-"
-        , input [ type_ "text", size 2, placeholder "MM", value (String.fromInt slot.month) , onInput (MonthUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
+        , input [ type_ "text", size 4, placeholder "MM", value (String.fromInt slot.month) , onInput (MonthUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
         , Html.text "-"
-        , input [ type_ "text", size 2, placeholder "DD", value (String.fromInt slot.day) , onInput (DayUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
+        , input [ type_ "text", size 4, placeholder "DD", value (String.fromInt slot.day) , onInput (DayUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
         , Html.text "         "
-        , input [ type_ "text", size 2, placeholder "HH", value (String.fromInt slot.hh), onInput (HourUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
+        , input [ type_ "text", size 4, placeholder "HH", value (String.fromInt slot.hh), onInput (HourUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
         , Html.text ":"
-        , input [ type_ "text", size 2, placeholder "MM", value (String.fromInt slot.mm), onInput (MinUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
+        , input [ type_ "text", size 4, placeholder "MM", value (String.fromInt slot.mm), onInput (MinUpdatea qkey) , Html.Attributes.style "font-family" "Gill Sans"] []
         , Html.text "         "
         , button [ onClick (RemoveSlot qkey)]  [ Html.text "🗑️" ]
                             
