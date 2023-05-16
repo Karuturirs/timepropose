@@ -1,5 +1,7 @@
 # [TimePropose](https://www.timepropose.com)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0facd155-d47b-427e-8087-05347cb63560/deploy-status)](https://app.netlify.com/sites/spectacular-custard-5890d6/deploys)
+
 **Streamline Your Global Scheduling Process**
 
 TimePropose is a web-based scheduling tool that allows users to easily propose, view, and coordinate meetings across different time zones. Users can enter their preferred meeting times in their local time zone, share the link with others, and collaborate on finding a mutually convenient time. 
