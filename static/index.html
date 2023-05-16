@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>TimePropose - Simplify scheduling across time zones, with auto timezone converter - timepropose.com</title>
+    <link rel="favicon" type="image/png" href="./images/timezone-globe-50.png"  />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="TimePropose - scheduling tool that allows users to easily propose, view, and coordinate availabilty times across different time zones. Users can enter their preferred available times in their local time zone, share the link with others, and collaborate on finding a mutually convenient time.">
+    <meta name="keywords" content=" Share availabilty, Timezone conveter, Online scheduling tool ,Meeting coordination, Collaborative scheduling, Meeting planner, Online meeting scheduler, propose availabilty, Time proposal tool, Hassle-free scheduling, Auto Timezone conversion" />
+    <meta property="og:title" content="timepropose– Official Site" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.timepropose.com" />
+    <meta property="og:description" content="Scheduling tool that allows users to easily propose, view, and coordinate availabilty times across different time zones." />
+    <meta property="og:image" content="./img/timepropose–logo.png" />
+    <meta property="og:site_name" content="TimePropose" />
+
+    <script type="text/javascript" src="elm.js"></script>
+</head>
+
+<body>
+	<div id="myapp"></div>
+</body>
+
+<script type="text/javascript">
+function CopyToClipboard(id)
+{
+    var r = document.createRange();
+    r.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+}
+
+function dateToMillsec( year, month, day, hh, mm)
+{
+		return (new Date(year, month-1, day, hh, mm)).getTime();
+}
+
+customElements.define('copy-url',
+    class extends HTMLElement {
+        // things required by Custom Elements
+        constructor() { super(); }
+        connectedCallback() { CopyToClipboard(this.getAttribute('id'))  }
+        attributeChangedCallback() {  }
+        static get observedAttributes() { return ['id']; }
+
+        // Our function to set the textContent based on attributes.
+        setTextContent(){}
+    }
+);
+
+customElements.define('time-millisec',
+    class extends HTMLElement {
+        // things required by Custom Elements
+        constructor() { super(); }
+        connectedCallback() { this.setTextContent(); }
+        attributeChangedCallback() { this.setTextContent(); }
+        static get observedAttributes() { return ['id','year', 'month', 'day', 'hh', 'mm']; }
+
+        // Our function to set the textContent based on attributes.
+        setTextContent()
+        {
+            const id = this.getAttribute('id');
+            const year = this.getAttribute('year');
+            const month = this.getAttribute('month');
+            const day = this.getAttribute('day');
+            const hh = this.getAttribute('hh');
+            const mm = this.getAttribute('mm');
+           
+            this.textContent =  (id == "msa" ? "?msa=" : "&"+id+"=") +dateToMillsec(year, month, day, hh, mm);
+        }
+    }
+);
+
+// Start the Elm application.
+var app = Elm.Main.init({
+	node: document.getElementById('myapp')
+});
+
+
+// If you want to use a JavaScript library to manage your WebSocket
+// connection, replace the code in JS with the alternate implementation.
+</script>
+
+</html>
