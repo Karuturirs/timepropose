@@ -200,7 +200,7 @@ view model =
     second = Time.toSecond model.zone model.time
 
   in
-  { title = "TimePropose - Simplify scheduling across time zones, with auto timezone converter - timepropose.com",
+  { title = "TimePropose - Share availablity across time zones, with auto timezone converter - timepropose.com",
     body = [
     --    text "The current URL is: "
     --   , Html.b [] [ text (  model.url.path) ]
@@ -211,7 +211,7 @@ view model =
         div[align "center"][
            
             
-          Html.h3 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "TimePropose - Propose, Share & Coordinate. Simplifying Scheduling for One-on-One Meetings" ],
+          Html.h3 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "TimePropose - Stop worrying about time zones. Share your availability in your local time with anyone in the world." ],
          -- Html.h3 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "Hassle-Free Timezone convertion." ],
             div [] [
                 svg
