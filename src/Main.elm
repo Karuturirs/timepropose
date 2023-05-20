@@ -213,7 +213,7 @@ view model =
            
             
           Html.h3 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "TimePropose - Stop worrying about time zones. Share your availability in your local time with anyone in the world." ],
-         -- Html.h3 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "Hassle-Free Timezone convertion." ],
+          Html.h4 [Html.Attributes.style "font-family" "Gill Sans"] [ Html.text "Your Device time." ],
             div [] [
                 svg
                     [ viewBox "0 0 400 400"
@@ -261,7 +261,7 @@ view model =
                                         , Html.Attributes.style "margin-left" "10px"
                                         , Html.Attributes.style  "title" "Put local date here"
                                         , Html.Attributes.style "font-family" "Gill Sans" ] [text (autoTextAdjust model)
-                                        ,button [ Html.Attributes.style "margin-left" "10px", disabled ((List.length model.ms) >=3) ,onClick AddSlot ]  [ Html.text "➕" ]
+                                        ,button [ Html.Attributes.style "margin-left" "10px", disabled ((List.length model.ms) >=5) ,onClick AddSlot ]  [ Html.text "➕" ]
                                     ]
                 ]
             , displaySlots model
@@ -361,8 +361,10 @@ removeSlotReorder model qkey =
                                 |> List.map (\(index, (k, p, r)) -> case index of
                                                                             0 -> ("msa", p, r)
                                                                             1 -> ("msb", p, r)
-                                                                            2 -> ("msc", p, r) 
-                                                                            _ -> ("msd", p, r) 
+                                                                            2 -> ("msc", p, r)
+                                                                            3 -> ("msd", p, r)
+                                                                            4 -> ("mse", p, r)
+                                                                            _ -> ("msf", p, r) 
                                                                             ) 
 
 picknextMs : Model -> String
@@ -372,7 +374,9 @@ picknextMs model =
         0 -> "msa"
         1 -> "msb"  
         2 -> "msc"
-        _ -> "msd"
+        3 -> "msd"
+        4 -> "mse"
+        _ -> "msf"
 
 updateSlotYear : (String, Int , Slot) -> String  -> Int -> (String, Int , Slot)
 updateSlotYear (p, q, r) key  newValue =
