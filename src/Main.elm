@@ -286,7 +286,7 @@ header =
             [ Html.ul []
                 [ Html.li [] [ a [ href "#" ] [ text "Home" ] ]
                 , Html.li [] [ a [ href "#" ] [ text "About" ] ]
-                , Html.li [] [ a [ href "#" ] [ text "Contact" ] ]
+
                 ]
             ]
         ]
